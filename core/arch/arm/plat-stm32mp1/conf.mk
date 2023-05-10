@@ -12,6 +12,10 @@ flavor_dts_file-157C_EV1_SCMI = stm32mp157c-ev1-scmi.dts
 
 flavor_dts_file-135F_DK = stm32mp135f-dk.dts
 
+flavorlist-cryp-256M =
+
+flavorlist-no_cryp-256M =
+
 flavorlist-cryp-512M = $(flavor_dts_file-157C_DK2) \
 		       $(flavor_dts_file-157C_DK2_SCMI) \
 		       $(flavor_dts_file-135F_DK)
@@ -27,11 +31,15 @@ flavorlist-cryp-1G = $(flavor_dts_file-157C_DHCOM_PDK2) \
 
 flavorlist-no_cryp-1G = $(flavor_dts_file-157A_DHCOR_AVENGER96)
 
-flavorlist-no_cryp = $(flavorlist-no_cryp-512M) \
+flavorlist-no_cryp = $(flavorlist-no_cryp-256M) \
+		  $(flavorlist-no_cryp-512M) \
 		  $(flavorlist-no_cryp-1G)
 
 flavorlist-512M = $(flavorlist-cryp-512M) \
 		  $(flavorlist-no_cryp-512M)
+
+flavorlist-256M = $(flavorlist-cryp-256M) \
+		  $(flavorlist-no_cryp-256M)
 
 flavorlist-1G = $(flavorlist-cryp-1G) \
 		  $(flavorlist-no_cryp-1G)
@@ -178,6 +186,11 @@ endif
 ifneq ($(CFG_WITH_LPAE),y)
 # Without LPAE, default TEE virtual address range is 1MB, we need at least 2MB.
 CFG_TEE_RAM_VA_SIZE ?= 0x00200000
+endif
+
+ifneq ($(filter $(CFG_EMBED_DTB_SOURCE_FILE),$(flavorlist-256M)),)
+CFG_TZDRAM_START ?= 0xce000000
+CFG_DRAM_SIZE    ?= 0x10000000
 endif
 
 ifneq ($(filter $(CFG_EMBED_DTB_SOURCE_FILE),$(flavorlist-512M)),)
