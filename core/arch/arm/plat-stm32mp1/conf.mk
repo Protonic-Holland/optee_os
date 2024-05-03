@@ -10,9 +10,10 @@ flavor_dts_file-157C_DK2_SCMI = stm32mp157c-dk2-scmi.dts
 flavor_dts_file-157C_ED1_SCMI = stm32mp157c-ed1-scmi.dts
 flavor_dts_file-157C_EV1_SCMI = stm32mp157c-ev1-scmi.dts
 
+flavor_dts_file-133C_PRIHMB = stm32mp133c-prihmb.dts
 flavor_dts_file-135F_DK = stm32mp135f-dk.dts
 
-flavorlist-cryp-256M =
+flavorlist-cryp-256M = $(flavor_dts_file-133C_PRIHMB)
 
 flavorlist-no_cryp-256M =
 
@@ -64,7 +65,8 @@ flavorlist-MP15 = $(flavor_dts_file-157A_DHCOR_AVENGER96) \
 		  $(flavor_dts_file-157C_ED1_SCMI) \
 		  $(flavor_dts_file-157C_EV1_SCMI)
 
-flavorlist-MP13 = $(flavor_dts_file-135F_DK)
+flavorlist-MP13 = $(flavor_dts_file-135F_DK) \
+		  $(flavor_dts_file-133C_PRIHMB)
 
 ifneq ($(PLATFORM_FLAVOR),)
 ifeq ($(flavor_dts_file-$(PLATFORM_FLAVOR)),)
