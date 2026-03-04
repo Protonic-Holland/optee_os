@@ -86,6 +86,40 @@
 #define FIREWALL_DDR_BASE	0xff534000
 #define FIREWALL_DDR_SIZE	SIZE_K(16)
 
+#elif defined(PLATFORM_FLAVOR_rk3562)
+
+#define GIC_BASE		0xfe900000
+#define GIC_SIZE		SIZE_K(64)
+#define GICD_BASE		(GIC_BASE + 0x1000)
+#define GICC_BASE		(GIC_BASE + 0x2000)
+
+#define UART0_BASE		0xff210000
+#define UART0_SIZE		SIZE_K(64)
+
+#define UART1_BASE		0xff670000
+#define UART1_SIZE		SIZE_K(64)
+
+#define UART2_BASE		0xff680000
+#define UART2_SIZE		SIZE_K(64)
+
+#define UART3_BASE		0xff690000
+#define UART3_SIZE		SIZE_K(64)
+
+#define FIREWALL_DDR_BASE	0xfef00000
+#define FIREWALL_DDR_SIZE	SIZE_K(64)
+
+#define TRNG_S_BASE		0xff8d0000
+#define TRNG_S_SIZE		SIZE_K(64)
+
+#define PERICRU_BASE		0xff130000
+#define PERICRU_SIZE		SIZE_K(64)
+
+#define SYS_SGRF_BASE		0xff020000
+#define SYS_SGRF_SIZE		SIZE_K(64)
+
+#define OTP_S_BASE		0xff920000
+#define OTP_S_SIZE		SIZE_K(64)
+
 #elif defined(PLATFORM_FLAVOR_rk3588)
 
 #define GIC_BASE		0xfe600000
