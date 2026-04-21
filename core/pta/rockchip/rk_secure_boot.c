@@ -45,14 +45,16 @@ static __maybe_unused char *otp_to_string(uint32_t *otp,
 
 static TEE_Result write_key_size(uint32_t key_size_bits)
 {
+	TEE_Result res = TEE_SUCCESS;
+#ifdef ROCKCHIP_OTP_SECURE_BOOT_STATUS_RSA4096
 	uint32_t idx = ROCKCHIP_OTP_SECURE_BOOT_STATUS_INDEX;
 	uint32_t sz = ROCKCHIP_OTP_SECURE_BOOT_STATUS_SIZE;
-	TEE_Result res = TEE_SUCCESS;
 	uint32_t status = 0;
-
+#endif
 	IMSG("Setting key size to %"PRId32, key_size_bits);
 
 	switch (key_size_bits) {
+#ifdef ROCKCHIP_OTP_SECURE_BOOT_STATUS_RSA4096
 	case 4096:
 		status |= ROCKCHIP_OTP_SECURE_BOOT_STATUS_RSA4096;
 
@@ -67,6 +69,7 @@ static TEE_Result write_key_size(uint32_t key_size_bits)
 				   ROCKCHIP_OTP_SECURE_BOOT_STATUS_RSA4096))
 			return TEE_ERROR_GENERIC;
 		break;
+#endif
 	case 2048:
 		/* Nothing to do */
 		break;
