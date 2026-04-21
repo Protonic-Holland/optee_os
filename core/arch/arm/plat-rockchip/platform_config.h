@@ -120,6 +120,18 @@
 #define OTP_S_BASE		0xff920000
 #define OTP_S_SIZE		SIZE_K(64)
 
+/* The RK356x uses 2 byte rows at each index so we need to
+ * convert the values here.
+ *
+ * The secure boot enable byte is at 0x20 / 4 = index 0x8
+ * The RSA hash starts at OTP byte 0x180 / 4 = index 0x60
+ */
+#define ROCKCHIP_OTP_SECURE_BOOT_STATUS_INDEX	0x8
+#define ROCKCHIP_OTP_SECURE_BOOT_STATUS_SIZE	0x1
+#define ROCKCHIP_OTP_SECURE_BOOT_STATUS_ENABLE	0x00ff
+#define ROCKCHIP_OTP_RSA_HASH_INDEX		0x60
+#define ROCKCHIP_OTP_RSA_HASH_SIZE		0x8
+
 #elif defined(PLATFORM_FLAVOR_rk3588)
 
 #define GIC_BASE		0xfe600000

@@ -6,7 +6,31 @@
 #ifndef __DRIVERS_ROCKCHIP_OTP_H
 #define __DRIVERS_ROCKCHIP_OTP_H
 
+#include <mm/core_mmu.h>
 #include <tee_api_types.h>
+
+/*
+ * Read one physical OTP word.
+ *
+ * A word is a 16-bit OTP storage unit. The function selects ECC or
+ * non-ECC mode from word_index before issuing the read.
+ *
+ * @word_index	physical 16-bit OTP word index
+ * @value	destination for the read value
+ */
+TEE_Result rockchip_otp_read_word(uint32_t word_index, uint16_t *value);
+
+/*
+ * Program one physical OTP word.
+ *
+ * A word is a 16-bit OTP storage unit. Bits may only transition from
+ * zero to one. The function selects ECC or non-ECC mode from word_index
+ * before issuing the program operation.
+ *
+ * @word_index	physical 16-bit OTP word index
+ * @value	value to program
+ */
+TEE_Result rockchip_otp_program_word(uint32_t word_index, uint16_t value);
 
 /*
  * Read the OTP fuses at index

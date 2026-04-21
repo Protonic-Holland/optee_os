@@ -63,6 +63,7 @@ include core/arch/arm/cpu/cortex-armv8-0.mk
 $(call force,CFG_TEE_CORE_NB_CORE,4)
 $(call force,CFG_AUTO_MAX_PA_BITS,y)
 $(call force,CFG_CRYPTO_WITH_CE,y)
+$(call force,CFG_ROCKCHIP_OTP,y)
 
 CFG_TZDRAM_START ?= 0x30000000
 CFG_TZDRAM_SIZE  ?= 0x01C00000
