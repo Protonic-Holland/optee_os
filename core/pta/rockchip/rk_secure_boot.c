@@ -190,7 +190,7 @@ static TEE_Result burn_hash(uint32_t param_types,
 				       ROCKCHIP_OTP_RSA_HASH_SIZE);
 	if (res)
 		return res;
-	if (memcmp(old_hash, new_hash, sizeof(new_hash))) {
+	if (!memcmp(old_hash, new_hash, sizeof(new_hash))) {
 		EMSG("Refusing to burn hash %s",
 		     otp_to_string(new_hash, str, sizeof(str)));
 		EMSG("OTP hash is %s",
